@@ -17,11 +17,11 @@ export const PWAInstallButton: React.FC = () => {
       <button
         id="btn-pwa-install"
         onClick={install}
-        className="flex items-center gap-1.5 rounded-xl bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white shadow-xs transition-colors hover:bg-blue-700"
+        className="flex items-center gap-1.5 rounded-xl bg-blue-600 px-2.5 py-1.5 text-xs font-semibold text-white shadow-xs transition-colors hover:bg-blue-700"
         title="Installer l'application sur votre téléphone ou PC"
       >
         <Download className="h-4 w-4" />
-        <span className="hidden sm:inline">Installer l'app</span>
+        <span className="text-[11px] font-bold sm:text-xs">Installer</span>
       </button>
     );
   }
@@ -33,11 +33,11 @@ export const PWAInstallButton: React.FC = () => {
         <button
           id="btn-pwa-install-ios"
           onClick={() => setShowIOSGuide(true)}
-          className="flex items-center gap-1.5 rounded-xl border border-blue-200 bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-700 transition-colors hover:bg-blue-100"
+          className="flex items-center gap-1.5 rounded-xl border border-blue-200 bg-blue-50 px-2.5 py-1.5 text-xs font-semibold text-blue-700 transition-colors hover:bg-blue-100"
           title="Installer sur iPhone / iPad"
         >
           <Smartphone className="h-4 w-4" />
-          <span className="hidden sm:inline">Installer l'app</span>
+          <span className="text-[11px] font-bold sm:text-xs">Installer</span>
         </button>
 
         {showIOSGuide && (
@@ -96,11 +96,11 @@ export const PWAInstallButton: React.FC = () => {
       <button
         id="btn-pwa-install-generic"
         onClick={() => setShowIOSGuide(true)}
-        className="flex items-center gap-1.5 rounded-xl border border-blue-200 bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-700 transition-colors hover:bg-blue-100"
+        className="flex items-center gap-1.5 rounded-xl border border-blue-200 bg-blue-50 px-2.5 py-1.5 text-xs font-semibold text-blue-700 transition-colors hover:bg-blue-100"
         title="Installer l'application sur votre appareil"
       >
         <Smartphone className="h-4 w-4" />
-        <span className="hidden sm:inline">Installer l'app</span>
+        <span className="text-[11px] font-bold sm:text-xs">Installer</span>
       </button>
 
       {showIOSGuide && (

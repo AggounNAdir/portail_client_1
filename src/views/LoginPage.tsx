@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Package, Lock, User, Eye, EyeOff, AlertCircle, Loader2, ArrowRight } from 'lucide-react';
 import { authService } from '../services/authService';
+import { PWAInstallButton } from '../components/PWAInstallButton';
 
 interface LoginPageProps {
   onLoginSuccess: () => void;
@@ -39,7 +40,11 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-100 p-4 sm:p-6">
-      <div className="w-full max-w-md rounded-3xl border border-slate-200 bg-white p-6 shadow-xl sm:p-10">
+      <div className="w-full max-w-md rounded-3xl border border-slate-200 bg-white p-6 shadow-xl sm:p-10 relative">
+        <div className="absolute top-4 right-4">
+          <PWAInstallButton />
+        </div>
+
         <div className="text-center">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/20">
             <Package className="h-9 w-9" />
