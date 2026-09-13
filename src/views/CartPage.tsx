@@ -24,8 +24,11 @@ export const CartPage: React.FC<CartPageProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successDialogCmd, setSuccessDialogCmd] = useState<CommandeOut | null>(null);
 
-  const totalHT = cart.reduce((sum, item) => sum + item.produit.prixUnitaire * item.quantite, 0);
-  const totalArticles = cart.reduce((sum, item) => sum + item.quantite, 0);
+  const totalHT = cart.reduce(
+    (sum, item) => sum + (item.produit?.prixUnitaire || 0) * (item.quantite || 1),
+    0
+  );
+  const totalArticles = cart.reduce((sum, item) => sum + (item.quantite || 0), 0);
 
   const handleSubmitOrder = async () => {
     if (cart.length === 0) return;
@@ -115,7 +118,7 @@ export const CartPage: React.FC<CartPageProps> = ({
                       {item.produit.designation}
                     </div>
                     <div className="mt-1 text-xs font-semibold text-blue-600">
-                      {item.produit.prixUnitaire.toFixed(2)} € HT
+                      {(item.produit?.prixUnitaire || 0).toFixed(2)} € HT
                     </div>
                   </div>
 
@@ -142,7 +145,7 @@ export const CartPage: React.FC<CartPageProps> = ({
 
                     <div className="text-right">
                       <div className="text-sm font-black text-slate-900">
-                        {itemTotal.toFixed(2)} €
+                        {((item.produit?.prixUnitaire || 0) * item.quantite).toFixed(2)} €
                       </div>
                     </div>
 

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { User, Building2, Phone, Mail, MapPin, Tag, LogOut, Wallet, ShieldCheck } from 'lucide-react';
+import { User, Building2, Phone, Mail, MapPin, Tag, LogOut, Wallet, ShieldCheck, Smartphone, Download } from 'lucide-react';
 import { ClientProfile } from '../types';
 import { clientService } from '../services/clientService';
+import { usePWAInstall } from '../hooks/usePWAInstall';
 
 interface ProfilePageProps {
   onLogout: () => void;
@@ -42,10 +43,10 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ onLogout }) => {
 
         <div className="mt-4">
           <div className="text-3xl font-black sm:text-4xl">
-            {profile.solde.toFixed(2)} €
+            {(profile.solde ?? 0).toFixed(2)} €
           </div>
           <p className="mt-1 text-xs text-blue-200">
-            {profile.solde > 0
+            {(profile.solde ?? 0) > 0
               ? 'Encours comptable en attente de règlement'
               : 'Compte client à jour'}
           </p>
@@ -103,6 +104,33 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ onLogout }) => {
               <div className="font-medium text-slate-800">{profile.email}</div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Section Application Mobile PWA */}
+      <div className="mt-6 rounded-2xl border border-blue-100 bg-blue-50/50 p-5 shadow-xs">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white">
+            <Smartphone className="h-5 w-5" />
+          </div>
+          <div>
+            <h3 className="text-sm font-bold text-slate-900">Application Mobile Installable</h3>
+            <p className="text-xs text-slate-500">
+              Installez l'application sur votre smartphone (Android / iOS)
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-4 rounded-xl bg-white p-4 text-xs text-slate-600">
+          <p className="font-medium text-slate-800">
+            Avantages sur votre téléphone :
+          </p>
+          <ul className="mt-2 space-y-1.5 list-disc list-inside text-slate-600">
+            <li>Lancement en plein écran sans barre d'adresse navigateur</li>
+            <li>Accès direct depuis votre écran d'accueil comme une application native</li>
+            <li>Fonctionne hors-ligne pour la tournée Androway et la caisse POS</li>
+            <li>Pas besoin de passer par le Play Store ou l'App Store</li>
+          </ul>
         </div>
       </div>
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Package, Cloud, CloudOff, RefreshCw, Settings, LogOut } from 'lucide-react';
 import { androwaySyncService } from '../services/androwaySyncService';
 import { SettingsModal } from './SettingsModal';
+import { PWAInstallButton } from './PWAInstallButton';
 
 interface HeaderProps {
   title: string;
@@ -58,6 +59,8 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
+          <PWAInstallButton />
+
           {showSyncBadge && (
             <button
               onClick={handleSyncClick}

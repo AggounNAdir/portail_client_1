@@ -150,10 +150,10 @@ export const CataloguePage: React.FC<CataloguePageProps> = ({ onAddToCart }) => 
                 <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-4">
                   <div>
                     <div className="text-base font-black text-blue-600">
-                      {prd.prixUnitaire.toFixed(2)} € <span className="text-xs font-normal text-slate-500">HT</span>
+                      {(prd.prixUnitaire ?? 0).toFixed(2)} € <span className="text-xs font-normal text-slate-500">HT</span>
                     </div>
                     <div className="text-[11px] text-slate-400">
-                      Unité : {prd.unite} • TVA {prd.tva}%
+                      Unité : {prd.unite || 'U'} • TVA {prd.tva ?? 19}%
                     </div>
                   </div>
 

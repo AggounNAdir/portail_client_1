@@ -100,10 +100,10 @@ export const CommandesPage: React.FC = () => {
                   <div className="flex items-center justify-between border-t border-slate-100 pt-2 sm:border-0 sm:pt-0">
                     <div className="text-right sm:mr-3">
                       <div className="text-sm font-black text-slate-900">
-                        {cmd.totalEstime.toFixed(2)} € <span className="text-xs font-normal text-slate-500">HT</span>
+                        {(cmd.totalEstime ?? 0).toFixed(2)} € <span className="text-xs font-normal text-slate-500">HT</span>
                       </div>
                       <div className="text-[11px] text-slate-400">
-                        {cmd.lignes.length} article(s)
+                        {(cmd.lignes || []).length} article(s)
                       </div>
                     </div>
 
@@ -133,13 +133,13 @@ export const CommandesPage: React.FC = () => {
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100">
-                          {cmd.lignes.map((l) => (
+                          {(cmd.lignes || []).map((l) => (
                             <tr key={l.id} className="hover:bg-slate-50/50">
                               <td className="p-2.5 font-mono text-slate-500">{l.code}</td>
                               <td className="p-2.5 font-medium text-slate-800">{l.designation}</td>
                               <td className="p-2.5 text-center font-bold text-slate-900">{l.quantite}</td>
-                              <td className="p-2.5 text-right text-slate-600">{l.prixUnitaireEstime.toFixed(2)} €</td>
-                              <td className="p-2.5 text-right font-bold text-blue-600">{l.totalEstime.toFixed(2)} €</td>
+                              <td className="p-2.5 text-right text-slate-600">{(l.prixUnitaireEstime ?? 0).toFixed(2)} €</td>
+                              <td className="p-2.5 text-right font-bold text-blue-600">{(l.totalEstime ?? 0).toFixed(2)} €</td>
                             </tr>
                           ))}
                         </tbody>

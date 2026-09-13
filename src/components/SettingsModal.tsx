@@ -58,8 +58,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
               />
             </div>
             <p className="mt-1.5 text-xs text-slate-500">
-              Sur mobile physique : IP de votre machine (ex: <code>http://192.168.1.70:8000</code>).
-              En l'absence de serveur actif, le portail fonctionne en mode autonome avec persistence locale.
+              Adresse de votre API FastAPI locale ou serveur distant.
+              Note : en prévisualisation HTTPS dans le cloud, Chrome bloque les requêtes non-sécurisées <code>http://IP</code> locales par sécurité (« Mixed Content ») ; l'application bascule alors automatiquement sur la base locale réactive.
             </p>
           </div>
 

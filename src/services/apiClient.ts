@@ -277,6 +277,16 @@ class ApiClient {
     options: RequestInit = {},
     fallbackData?: () => T
   ): Promise<T> {
+    // Si la page est en HTTPS (ex: Google Cloud Run) et que l'URL cible est en HTTP local (ex: http://192.168.1.70),
+    // le navigateur bloque la requête directement pour 'Mixed Content' avant même de tenter la connexion.
+    // On bascule immédiatement sur le fallback local pour éviter de faire planter l'application.
+    const isBrowserHttps = typeof window !== 'undefined' && window.location.protocol === 'https:';
+    const isTargetHttpInsecure = this.baseUrl.startsWith('http://') && !this.baseUrl.includes('localhost') && !this.baseUrl.includes('127.0.0.1');
+
+    if (isBrowserHttps && isTargetHttpInsecure && fallbackData) {
+      return fallbackData();
+    }
+
     const token = this.getAccessToken();
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
